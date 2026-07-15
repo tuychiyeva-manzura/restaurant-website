@@ -42,37 +42,45 @@
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
                 <div class="flex-shrink-0">
-                    <a href="{{ route('home') }}" class="font-playfair text-3xl font-bold text-amber-600 hover:text-amber-700 transition-colors">
+                    <a href="{{ url('/') }}" class="font-playfair text-3xl font-bold text-amber-600 hover:text-amber-700 transition-colors">
                         Gourmet
                     </a>
                 </div>
                 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="{{ route('home') }}" 
-                       class="{{ request()->routeIs('home') ? 'text-amber-600 font-medium border-b-2 border-amber-600 pb-1' : 'text-gray-700 hover:text-amber-600 transition-colors font-medium' }}">
+                <div class="hidden lg:flex items-center space-x-6">
+                    <a href="{{ url('/') }}" 
+                       class="{{ request()->is('/') ? 'text-amber-600 font-medium border-b-2 border-amber-600 pb-1' : 'text-gray-700 hover:text-amber-600 transition-colors font-medium' }}">
                         Bosh sahifa
                     </a>
-                    <a href="{{ route('about') }}" 
-                       class="{{ request()->routeIs('about') ? 'text-amber-600 font-medium border-b-2 border-amber-600 pb-1' : 'text-gray-700 hover:text-amber-600 transition-colors font-medium' }}">
+                    <a href="{{ url('/about') }}" 
+                       class="{{ request()->is('about') ? 'text-amber-600 font-medium border-b-2 border-amber-600 pb-1' : 'text-gray-700 hover:text-amber-600 transition-colors font-medium' }}">
                         Biz haqimizda
                     </a>
-                    <a href="{{ route('menu') }}" 
-                       class="{{ request()->routeIs('menu') ? 'text-amber-600 font-medium border-b-2 border-amber-600 pb-1' : 'text-gray-700 hover:text-amber-600 transition-colors font-medium' }}">
+                    <a href="{{ url('/menu') }}" 
+                       class="{{ request()->is('menu') ? 'text-amber-600 font-medium border-b-2 border-amber-600 pb-1' : 'text-gray-700 hover:text-amber-600 transition-colors font-medium' }}">
                         Menyu
                     </a>
-                    <a href="{{ route('contact') }}" 
-                       class="{{ request()->routeIs('contact') ? 'text-amber-600 font-medium border-b-2 border-amber-600 pb-1' : 'text-gray-700 hover:text-amber-600 transition-colors font-medium' }}">
+                    <a href="{{ url('/specials') }}" 
+                       class="{{ request()->is('specials') ? 'text-amber-600 font-medium border-b-2 border-amber-600 pb-1' : 'text-gray-700 hover:text-amber-600 transition-colors font-medium' }}">
+                        Aksiyalar
+                    </a>
+                    <a href="{{ url('/gallery') }}" 
+                       class="{{ request()->is('gallery') ? 'text-amber-600 font-medium border-b-2 border-amber-600 pb-1' : 'text-gray-700 hover:text-amber-600 transition-colors font-medium' }}">
+                        Galereya
+                    </a>
+                    <a href="{{ url('/contact') }}" 
+                       class="{{ request()->is('contact') ? 'text-amber-600 font-medium border-b-2 border-amber-600 pb-1' : 'text-gray-700 hover:text-amber-600 transition-colors font-medium' }}">
                         Aloqa
                     </a>
-                    <a href="{{ route('reservation') }}" 
-                       class="bg-amber-600 text-white px-6 py-2 rounded-full hover:bg-amber-700 transition-all transform hover:scale-105 font-medium">
+                    <a href="{{ url('/reservation') }}" 
+                       class="bg-amber-600 text-white px-6 py-2 rounded-full hover:bg-amber-700 transition-all transform hover:scale-105 font-medium ml-2">
                         Bron qilish
                     </a>
                 </div>
                 
                 <!-- Mobile Menu Button -->
-                <div class="md:hidden">
+                <div class="lg:hidden">
                     <button id="mobile-menu-button" class="text-gray-700 hover:text-amber-600 focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
@@ -81,14 +89,28 @@
         </div>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-            <div class="px-4 py-3 space-y-3">
-                <a href="{{ route('home') }}" class="block py-2 font-medium {{ request()->routeIs('home') ? 'text-amber-600' : 'text-gray-700 hover:text-amber-600' }}">Bosh sahifa</a>
-                <a href="{{ route('about') }}" class="block py-2 font-medium {{ request()->routeIs('about') ? 'text-amber-600' : 'text-gray-700 hover:text-amber-600' }}">Biz haqimizda</a>
-                <a href="{{ route('menu') }}" class="block py-2 font-medium {{ request()->routeIs('menu') ? 'text-amber-600' : 'text-gray-700 hover:text-amber-600' }}">Menyu</a>
-                <a href="{{ route('contact') }}" class="block py-2 font-medium {{ request()->routeIs('contact') ? 'text-amber-600' : 'text-gray-700 hover:text-amber-600' }}">Aloqa</a>
-                <a href="{{ route('reservation') }}" class="block bg-amber-600 text-white px-6 py-3 rounded-full hover:bg-amber-700 text-center font-medium">
-                    Bron qilish
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t shadow-lg">
+            <div class="px-4 py-3 space-y-2">
+                <a href="{{ url('/') }}" class="block py-3 px-4 rounded-lg {{ request()->is('/') ? 'text-amber-600 bg-amber-50 font-medium' : 'text-gray-700 hover:bg-gray-50' }}">
+                    <i class="fas fa-home mr-2"></i> Bosh sahifa
+                </a>
+                <a href="{{ url('/about') }}" class="block py-3 px-4 rounded-lg {{ request()->is('about') ? 'text-amber-600 bg-amber-50 font-medium' : 'text-gray-700 hover:bg-gray-50' }}">
+                    <i class="fas fa-info-circle mr-2"></i> Biz haqimizda
+                </a>
+                <a href="{{ url('/menu') }}" class="block py-3 px-4 rounded-lg {{ request()->is('menu') ? 'text-amber-600 bg-amber-50 font-medium' : 'text-gray-700 hover:bg-gray-50' }}">
+                    <i class="fas fa-utensils mr-2"></i> Menyu
+                </a>
+                <a href="{{ url('/specials') }}" class="block py-3 px-4 rounded-lg {{ request()->is('specials') ? 'text-amber-600 bg-amber-50 font-medium' : 'text-gray-700 hover:bg-gray-50' }}">
+                    <i class="fas fa-tag mr-2"></i> Aksiyalar
+                </a>
+                <a href="{{ url('/gallery') }}" class="block py-3 px-4 rounded-lg {{ request()->is('gallery') ? 'text-amber-600 bg-amber-50 font-medium' : 'text-gray-700 hover:bg-gray-50' }}">
+                    <i class="fas fa-images mr-2"></i> Galereya
+                </a>
+                <a href="{{ url('/contact') }}" class="block py-3 px-4 rounded-lg {{ request()->is('contact') ? 'text-amber-600 bg-amber-50 font-medium' : 'text-gray-700 hover:bg-gray-50' }}">
+                    <i class="fas fa-envelope mr-2"></i> Aloqa
+                </a>
+                <a href="{{ url('/reservation') }}" class="block bg-amber-600 text-white px-6 py-3 rounded-full hover:bg-amber-700 text-center font-medium mt-2">
+                    <i class="fas fa-calendar-check mr-2"></i> Bron qilish
                 </a>
             </div>
         </div>
@@ -113,10 +135,11 @@
                 <div>
                     <h4 class="text-lg font-bold mb-4">Tezkor havolalar</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="{{ route('home') }}" class="hover:text-amber-600 transition-colors">Bosh sahifa</a></li>
-                        <li><a href="{{ route('about') }}" class="hover:text-amber-600 transition-colors">Biz haqimizda</a></li>
-                        <li><a href="{{ route('menu') }}" class="hover:text-amber-600 transition-colors">Menyu</a></li>
-                        <li><a href="{{ route('contact') }}" class="hover:text-amber-600 transition-colors">Aloqa</a></li>
+                        <li><a href="{{ url('/') }}" class="hover:text-amber-600 transition-colors">Bosh sahifa</a></li>
+                        <li><a href="{{ url('/about') }}" class="hover:text-amber-600 transition-colors">Biz haqimizda</a></li>
+                        <li><a href="{{ url('/menu') }}" class="hover:text-amber-600 transition-colors">Menyu</a></li>
+                        <li><a href="{{ url('/specials') }}" class="hover:text-amber-600 transition-colors">Aksiyalar</a></li>
+                        <li><a href="{{ url('/gallery') }}" class="hover:text-amber-600 transition-colors">Galereya</a></li>
                     </ul>
                 </div>
                 
@@ -154,7 +177,6 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Mobile Menu -->
     <script>
         // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -165,7 +187,6 @@
                 mobileMenu.classList.toggle('hidden');
             });
 
-            // Close mobile menu when clicking a link
             const mobileMenuLinks = mobileMenu.querySelectorAll('a');
             mobileMenuLinks.forEach(link => {
                 link.addEventListener('click', () => {

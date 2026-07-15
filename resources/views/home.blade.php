@@ -27,6 +27,7 @@
                 <a href="{{ route('reservation') }}" class="border-2 border-white text-white px-8 py-4 rounded-full hover:bg-white hover:text-gray-900 transition-all transform hover:scale-105 font-medium text-lg">
                     Stol band qilish
                 </a>
+           
             </div>
         </div>
         

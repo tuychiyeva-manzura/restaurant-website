@@ -31,3 +31,9 @@ Route::get('/contact', function () {
 Route::get('/reservation', function () {
     return view('reservation');
 })->name('reservation');
+Route::get('/specials', function () {
+    return view('specials');
+})->name('specials');
+Route::get('/gallery', function () {
+    return view('gallery');
+})->name('gallery');
